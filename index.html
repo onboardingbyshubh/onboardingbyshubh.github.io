@@ -77,9 +77,16 @@ function checkout() {
     ],
     total: 12
   });
-
   alert("Checkout started! Event sent to GTM.");
   }
+// Simulated thank-you message after checkout
+  document.body.innerHTML = `
+    <div style="text-align:center; padding-top:50px;">
+      <h2>🎉 Thank you for your order!</h2>
+      <p>Your checkout has been successfully processed.</p>
+    </div>
+  `;
+}
 </script>
   <!-- rebuild test -->
   
