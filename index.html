@@ -5,11 +5,11 @@
 
   <!-- Google Tag Manager -->
   <script>
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id=GTM-5MQSXFPH'+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5MQSXFPH');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5MQSXFPH');
   </script>
   <!-- End Google Tag Manager -->
 
@@ -47,8 +47,10 @@
 </div>
 
 <script>
+  // Initialize GTM Data Layer
   window.dataLayer = window.dataLayer || [];
 
+  // Login Function
   function login() {
     const username = document.getElementById('username').value;
     if (username.trim() === '') {
@@ -56,40 +58,39 @@
       return;
     }
 
+    // Fire login event
     dataLayer.push({
       event: 'user_login',
       user: username
     });
 
+    // Show product page
     document.getElementById('login-page').classList.add('hidden');
     document.getElementById('product-page').classList.remove('hidden');
     document.getElementById('user-name').innerText = username;
   }
 
+  // Checkout Function
   function checkout() {
-function checkout() {
-  dataLayer.push({
-    event: 'checkout_initiated',
-    items: [
-      { name: 'Donut', price: 5 },
-      { name: 'Cookie', price: 3 },
-      { name: 'Cupcake', price: 4 }
-    ],
-    total: 12
-  });
-  alert("Checkout started! Event sent to GTM.");
+    dataLayer.push({
+      event: 'checkout_initiated',
+      items: [
+        { name: 'Donut', price: 5 },
+        { name: 'Cookie', price: 3 },
+        { name: 'Cupcake', price: 4 }
+      ],
+      total: 12
+    });
+
+    // Simulate thank-you screen
+    document.body.innerHTML = `
+      <div style="text-align:center; padding-top:50px;">
+        <h2>🎉 Thank you for your order!</h2>
+        <p>Your checkout has been successfully processed.</p>
+      </div>
+    `;
   }
-// Simulated thank-you message after checkout
-  document.body.innerHTML = `
-    <div style="text-align:center; padding-top:50px;">
-      <h2>🎉 Thank you for your order!</h2>
-      <p>Your checkout has been successfully processed.</p>
-    </div>
-  `;
-}
 </script>
-  <!-- rebuild test -->
-  
 
 </body>
 </html>
