@@ -67,17 +67,18 @@
   }
 
   function checkout() {
-    dataLayer.push({
-      event: 'checkout_initiated',
-      items: [
-        { name: 'Donut', price: 5 },
-        { name: 'Cookie', price: 3 },
-        { name: 'Cupcake', price: 4 }
-      ],
-      total: 12
-    });
+function checkout() {
+  dataLayer.push({
+    event: 'checkout_initiated',
+    items: [
+      { name: 'Donut', price: 5 },
+      { name: 'Cookie', price: 3 },
+      { name: 'Cupcake', price: 4 }
+    ],
+    total: 12
+  });
 
-    alert("Checkout started! Event sent to GTM.");
+  alert("Checkout started! Event sent to GTM.");
   }
 </script>
   <!-- rebuild test -->
