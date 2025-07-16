@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tumblr Store</title>
+
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id=GTM-5MQSXFPH'+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5MQSXFPH');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .hidden { display: none; }
+    .product { margin-bottom: 10px; }
+    button { margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MQSXFPH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- LOGIN PAGE -->
+<div id="login-page">
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Enter your name" />
+  <br><br>
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- PRODUCT PAGE -->
+<div id="product-page" class="hidden">
+  <h2>Welcome, <span id="user-name"></span></h2>
+  <div class="product">🍩 Donut - $5</div>
+  <div class="product">🍪 Cookie - $3</div>
+  <div class="product">🧁 Cupcake - $4</div>
+  <button onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function login() {
+    const username = document.getElementById('username').value;
+    if (username.trim() === '') {
+      alert("Please enter your name.");
+      return;
+    }
+
+    dataLayer.push({
+      event: 'user_login',
+      user: username
+    });
+
+    document.getElementById('login-page').classList.add('hidden');
+    document.getElementById('product-page').classList.remove('hidden');
+    document.getElementById('user-name').innerText = username;
+  }
+
+  function checkout() {
+    dataLayer.push({
+      event: 'checkout_initiated',
+      items: [
+        { name: 'Donut', price: 5 },
+        { name: 'Cookie', price: 3 },
+        { name: 'Cupcake', price: 4 }
+      ],
+      total: 12
+    });
+
+    alert("Checkout started! Event sent to GTM.");
+  }
+</script>
+
+</body>
+</html>
